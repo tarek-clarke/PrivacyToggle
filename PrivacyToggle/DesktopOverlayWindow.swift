@@ -11,9 +11,9 @@ final class DesktopOverlayWindow: NSWindow {
             contentRect: screen.frame,
             styleMask: .borderless,
             backing: .buffered,
-            defer: false,
-            screen: screen
+            defer: false
         )
+        setFrame(screen.frame, display: false)
         configure(for: screen)
     }
 
@@ -57,7 +57,7 @@ final class DesktopOverlayWindow: NSWindow {
         // Fallback: solid colour that matches the system appearance.
         let view = NSView(frame: frame)
         view.wantsLayer = true
-        let isDark = NSAppearance.current.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+        let isDark = NSAppearance.currentDrawing().bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
         view.layer?.backgroundColor = isDark
             ? NSColor(calibratedWhite: 0.12, alpha: 1).cgColor
             : NSColor(calibratedWhite: 0.88, alpha: 1).cgColor
