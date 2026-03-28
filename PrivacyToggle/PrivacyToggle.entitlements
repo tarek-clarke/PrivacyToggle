@@ -2,8 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- Mac App Store sandbox — no private API or elevated permissions required -->
+	<!-- Mac App Store sandbox -->
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
+	<!-- Outbound network connections are intentionally NOT declared:
+	     com.apple.security.network.client is absent → sandbox blocks all outbound TCP/UDP.
+	     Inbound connections (network.server) are likewise absent.
+	     The app is fully air-gapped by the sandbox; it never phones home. -->
 </dict>
 </plist>
